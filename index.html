@@ -1,0 +1,410 @@
+<html><head>
+  <title>CS221: Artificial Intelligence: Principles and Techniques</title>
+  <script src="plugins/main.js"></script><style type="text/css"></style><script src="plugins/MathJax/MathJax.js?config=default">MathJax.Hub.Config({  extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],  tex2jax: {inlineMath: [["$", "$"]]},});</script><script src="plugins/jquery.min.js"></script><link rel="stylesheet" href="plugins/main.css">
+  <script src="events.js"></script>
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=default">MathJax.Hub.Config({  extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],  tex2jax: {inlineMath: [["$", "$"]]},});</script><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Blank; src: url('about:blank')}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style></head>
+<body onload="onLoad(); eventsOnLoad(); fixScrollPosition()"><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
+
+<div class="section">
+  <div style="float:left; clear:left">
+    <img width="90" src="stanford_seal.gif">
+  </div>
+  <div style="margin-left: 30; margin-top: 20">
+    <div class="top assignmentTitle">
+      CS221: Artificial Intelligence: Principles and Techniques
+    </div>
+    <div class="top nav">
+    Stanford / Autumn 2015-2016
+    </div>
+    <div class="top">
+      <a class="nav" href="https://www.google.com/calendar/embed?src=r64ted6b2ej4hitna36omkuf1s%40group.calendar.google.com">[Calendar]</a>
+      &nbsp;
+      <a class="nav" href="#coursework">[Coursework]</a>
+      &nbsp;
+      <a class="nav" href="#schedule">[Schedule]</a>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="section">
+  <span class="header">Logistics</span>
+
+  <div class="section"><b>Time/location:</b>
+    <ul>
+      <li>Lectures: Mon/Wed 3:00-4:20pm in NVIDIA auditorium (<a href="https://mvideox.stanford.edu/Course/561">watch online</a>)</li>
+      <li>Sections: Fri 3:30pm-4:20pm in Thornton 102; see <a href="https://www.google.com/calendar/embed?src=r64ted6b2ej4hitna36omkuf1s%40group.calendar.google.com">calendar</a></li>
+      <li>Office hours: CA office hours are in the Huang basement; see <a href="https://www.google.com/calendar/embed?src=r64ted6b2ej4hitna36omkuf1s%40group.calendar.google.com">calendar</a> for times.</li>
+    </ul>
+  </div>
+
+  <div class="section"><b>Instructor:</b> <a href="http://cs.stanford.edu/~pliang">Percy Liang</a></div>
+  <div class="section"><b>Course assistants:</b>
+    <ul>
+      <li><a href="http://stanford.edu/~robinjia/">Robin Jia</a> (head CA)</li>
+      <li>Isaac Caswell</li>
+      <li>Justin Fu</li>
+      <li>Amit Garg</li>
+      <li>Kenji Hata</li>
+      <li>Irving Hsu</li>
+      <li>Lun-Kai Hsu</li>
+      <li>Nadine Hussami</li>
+      <li>Arzav Jain</li>
+      <li>Paul Martinez</li>
+      <li>Jonathan NeCamp</li>
+      <li>Sunil Pai</li>
+      <li>Arjun Puranik</li>
+      <li>Apaar Sadwhani</li>
+      <li>Chuanqi Shen</li>
+      <li>Jacky Wang</li>
+      <li>Norman Yu</li>
+      <li>You Zhou</li>
+    </ul>
+  </div>
+
+  <div class="section"><b>How to contact us:</b>
+    Please use <a href="https://piazza.com/class#fall2015/cs221">Piazza</a>
+    for all questions related to lectures, homeworks, and projects.
+    For SCPD students, email <a href="emailto:scpdsupport@stanford.edu"> scpdsupport@stanford.edu</a> or call 650-741-1542.
+  </div>
+
+  <div class="section"><b>Announcements:</b> see <a href="https://piazza.com/class#fall2015/cs221">Piazza</a>. NOTE: If you enrolled in
+    this class on Axess, you should be added to the Piazza group automatically,
+    within a few hours. You can also register independently; there is no access code required to join the group.</div>
+
+  <div class="section"><b>Calendar</b>: look <a href="https://www.google.com/calendar/embed?src=r64ted6b2ej4hitna36omkuf1s%40group.calendar.google.com">here</a> for dates/times of all lectures, sections, office hours, due dates.</div>
+</div>
+
+<div class="section">
+  <a name="content"><span class="header">Content</span></a>
+
+  <div class="section"><b>What is this course about?</b>
+    What do web search, speech recognition, face recognition, machine translation,
+    autonomous driving, and automatic scheduling have in common?
+    These are all complex real-world problems,
+    and the goal of artificial intelligence (AI) is to tackle these
+    with rigorous mathematical tools.
+    In this course, you will learn the foundational principles that drive these
+    applications and practice implementing some of these systems.  Specific
+    topics include machine learning, search, game playing, Markov decision
+    processes, constraint satisfaction, graphical models, and logic.
+    The main goal of the course is to equip you with the tools to tackle new
+    AI problems you might encounter in life.
+  </div>
+
+  <div class="section"><b>Prerequisites:</b>
+    This course is fast-paced and covers a lot of ground,
+    so it is important that you have a solid foundation on both the theoretical and empirical fronts.
+    You should have taken the following classes (or their equivalents):
+    <ul>
+      <li>Programming (<a href="http://www.stanford.edu/class/cs106a/">CS 106A</a>, <a href="http://www.stanford.edu/class/cs106b/">CS 106B</a>, <a href="http://www.stanford.edu/class/cs107/">CS 107</a>)</li>
+      <li>Discrete math (<a href="http://www.stanford.edu/class/cs103/">CS 103</a>)</li>
+      <li>Probability (<a href="http://www.stanford.edu/class/cs109/">CS 109</a>)</li>
+    </ul>
+  </div>
+
+  <div class="section"><b>Reading:</b>
+    There is no required textbook for this class, and you should be able to
+    learn everything from the lecture notes and homeworks.
+    However, if you would like to pursue more advanced topics or get another
+    perspective on the same material, here are some books:
+    <ul>
+      <li><a href="http://aima.cs.berkeley.edu">Russell and Norvig.  Artificial
+        Intelligence: A Modern Approach.</a> A comprehensive reference for
+      all the AI topics that we will cover.
+      </li>
+      <li>
+        <a href="http://mitpress.mit.edu/books/probabilistic-graphical-models">Koller and Friedman.  Probabilistic Graphical Models.</a>
+        Covers factor graphs and Bayesian networks (this is the textbook for CS228).</li>
+      <li>
+        <a href="http://webdocs.cs.ualberta.ca/~sutton/book/ebook/">Sutton and Barto.  Reinforcement Learning: An Introduction.</a>
+        Covers Markov decision processes and reinforcement learning.  Available free online.
+      </li>
+      <li>
+        <a href="http://www-stat.stanford.edu/~tibs/ElemStatLearn/">Hastie, Tibshirani, and Friedman.  The elements of statistical learning.</a>
+        Covers machine learning.  Available free online.
+      </li>
+      <li>
+        <a href="http://www.bracil.net/edward/fcs.html">Tsang.  Foundations of constraint satisfaction.</a>
+        Covers constraint satisfaction problems.  Available free online.
+      </li>
+    </ul>
+    Bear in mind that some of these books can be quite dense and use different
+    notation terminology, so it might take some effort to connect up with the
+    material from class.
+  </div>
+</div>
+
+<div class="section">
+  <a name="coursework"><span class="header">Coursework</span></a>
+
+  <p class="subheader">Grading</p>
+  <ul>
+    <li><b>Homeworks</b> (60%):
+    There will be weekly homeworks with both written and programming parts.
+    Each homework is centered around an application and will also deepen your understanding of the theoretical concepts.
+    Some homeworks will have a competition component; winners will receive extra credit.
+    Here are all the homework deadlines:
+    <p></p><div id="homeworks"><ul><li><span style="width:25em;display:inline-block"><a href="assignments/foundations/index.html">Foundations [foundations]</a> (<a href="assignments/foundations.zip">zip</a>) (<a href="restricted/foundations/index.html">solutions</a>)</span> (due <strong>Tue Sep 29</strong>)</li><li><span style="width:25em;display:inline-block"><a href="assignments/sentiment/index.html">Sentiment classification [sentiment]</a> (<a href="assignments/sentiment.zip">zip</a>) (<a href="restricted/sentiment/index.html">solutions</a>)</span> (due <strong>Tue Oct 6</strong>)</li><li><span style="width:25em;display:inline-block"><a href="assignments/reconstruct/index.html">Text reconstruction [reconstruct]</a> (<a href="assignments/reconstruct.zip">zip</a>) (<a href="restricted/reconstruct/index.html">solutions</a>)</span> (due <strong>Tue Oct 13</strong>)</li><li><span style="width:25em;display:inline-block"><a href="assignments/blackjack/index.html">Blackjack [blackjack]</a> (<a href="assignments/blackjack.zip">zip</a>) (<a href="restricted/blackjack/index.html">solutions</a>)</span> (due <strong>Tue Oct 20</strong>)</li><li><span style="width:25em;display:inline-block"><a href="assignments/pacman/index.html">Pac-Man [pacman]</a> (<a href="assignments/pacman.zip">zip</a>) (<a href="restricted/pacman/index.html">solutions</a>)</span> (due <strong>Tue Oct 27</strong>)</li><li><span style="width:25em;display:inline-block"><a href="assignments/scheduling/index.html">Course scheduling [scheduling]</a> (<a href="assignments/scheduling.zip">zip</a>) (<a href="restricted/scheduling/index.html">solutions</a>)</span> (due <strong>Tue Nov 3</strong>)</li><li><span style="width:25em;display:inline-block"><a href="assignments/car/index.html">Car tracking [car]</a> (<a href="assignments/car.zip">zip</a>) (<a href="restricted/car/index.html">solutions</a>)</span> (due <strong>Tue Nov 10</strong>)</li><li><span style="width:25em;display:inline-block"><a href="assignments/logic/index.html">Language and logic [logic]</a> (<a href="assignments/logic.zip">zip</a>) (<a href="restricted/logic/index.html">solutions</a>)</span> (due <strong>Fri Nov 20</strong>)</li></ul><br></div><p></p>
+    </li>
+
+    <li><b>Exam</b> (20%): The exam is a three-hour written exam that will
+    test your knowledge and problem-solving skills on all preceding lectures and homeworks.
+    You cannot use any external aids
+    except one double-sided page of notes.
+    If you have a major conflict (e.g., an academic conference),
+    <a href="https://docs.google.com/forms/d/1u6c46u08YPrQcOxiOKbBErDZN0LsXVtmZm83L-0B3Qc/viewform">submit a request</a> to take it at another (earlier) time.
+    Your request must be submitted by <strong>Tue Oct 27</strong>.
+
+    <div id="exam">
+      <blockquote>
+        Date: <strong>Tue Nov 17</strong> from 6pm to 9pm<br>
+        Location:
+            <ul>
+                <li>Last names A-K: Hewlett 200 </li>
+                <li>Last names L-R: Bishop Auditorium </li>
+                <li>Last names S-Z: 420-040 </li>
+            </ul>
+      </blockquote>
+
+        </div></li><li>
+          <a href="restricted/exams/exam-2015.pdf">2015 exam</a>
+          [<a href="restricted/exams/exam-2015-solution.pdf">solutions</a>]
+        </li>
+        <li>
+          <a href="restricted/exams/exam-2014.pdf">2014 exam</a>
+          [<a href="restricted/exams/exam-2014-solution.pdf">solutions</a>] (for practice)
+        </li>
+        <li>
+          <a href="restricted/exams/exam-2013.pdf">2013 exam</a>
+          [<a href="restricted/exams/exam-2013-solution.pdf">solutions</a>] (for practice)
+        </li>
+      </ul>
+    </div>
+    <br>
+    For SCPD students, your exams will be distributed through the SCPD office once you have set up an exam monitor.
+    <br><br>
+
+    
+
+    <li><b><a href="project.html">Project</a></b> (20%): The final project provides an opportunity for you to
+    use the tools from class to build something interesting of your choice.
+    Projects should be done in groups of up to three.
+    The project will be something that you work on throughout the course and we have set up some milestones
+    to help you along the way:
+    <p></p><div id="projects"><ul><li><span style="width:25em;display:inline-block"><a href="project.html#p-proposal">Project proposal [p-proposal]</a></span>(due <strong>Tue Oct 20</strong>)</li><li><span style="width:25em;display:inline-block"><a href="project.html#p-progress">Project progress report [p-progress]</a></span>(due <strong>Thu Nov 12</strong>)</li><li><span style="width:25em;display:inline-block"><a href="project.html#p-final">Project final report [p-final]</a></span>(due <strong>Fri Dec 11</strong>)</li></ul></div><p></p>
+    See <a href="project.html">the project page</a> for more details.
+    <p>
+    Regardless of the group size, all groups must submit the same basic amount of work as detailed in each milestone.
+    Of course, the experiments may not always be successful,
+    so we will cut the smaller groups more slack,
+    while larger groups are expected to be more thorough in their experiments.
+    </p>
+    <p>For inspiration, we have made
+    <a href="restricted/projects">last year's CS221 projects</a>
+    available for viewing (student access only).
+    </p>
+    </li>
+
+    <li><b>Piazza</b>:
+    You will be awarded with up to 2% extra credit
+    if you answer other students' questions in a substantial and helpful way.
+  
+
+  <p class="subheader">Assignments</p>
+
+  <div class="section"><b>Written assignments:</b>
+    Homeworks should be written up clearly and succinctly; you may lose points if your answers
+    are unclear or unnecessarily complicated.
+    Here is an <a href="homework-example.html">example</a> of what we are looking for.
+    You are encouraged to use LaTeX to writeup your homeworks
+    (here's a <a href="homework.tex">template</a>), but this is not a requirement.
+  </div>
+
+  <div class="section"><b>Programming assignments:</b>
+    The grader runs on Python 2.7, which is not guaranteed to work with newer versions (Python 3) or older versions (below 2.7).
+    Please use <a href="https://www.python.org/downloads/">Python 2.7</a> to develop your code.
+    <p>
+    Although we recommend that you use a UNIX environment (e.g., Linux or OS X),
+    the sanity check script <code>grader.py</code> should work on Windows as well.
+    Note that no matter what OS you use, you will need to submit the assignments on corn machines.
+    The final grading will be run on Linux servers.
+    </p><p>
+    The submitted code will <b>not</b> be graded if it has one of the following issues:
+    </p><ul>
+      <li>The code does not run on <code>corn.stanford.edu</code>.
+          In particular, Python packages outside the standard library are not guaranteed to work.</li>
+      <li>The code quits unexpectedly. To prevent this, do not use <code>quit()</code>, <code>exit()</code>,
+          <code>sys.exit()</code>, <code>os._exit()</code>.
+      </li><li>The code reads external resources other than the files given in the assignment.
+      </li><li>The code is malicious. This is considered a violation of the honor code.
+          The score of the assignment will be zero (0) and the incident will be reported to the Office of Judicial Affairs.
+    </li></ul>
+  </div>
+
+  <div class="section"><b>Collaboration policy and honor code:</b>
+    You are free to form study groups and discuss homeworks and projects.
+    However, you must write up homeworks and code from scratch independently.
+    The following are considered to be honor code violations:
+    <ul>
+      <li>Looking at the writeup or code of another student.</li>
+      <li>Showing your writeup or code to another student.</li>
+      <li>Discussing homework problems in such detail that your solution (writeup or code) is almost identical to another student's answer.</li>
+      <li>Uploading your writeup or code to a public repository (e.g. github, bitbucket, pastebin) so that it can be accessed by other students.</li>
+      <li>Looking at solutions from previous years' homeworks - either official or written up by another student.</li>
+    </ul>
+    When debugging code together, you are only allowed to look at the input-output behavior
+    of each other's programs (so you should write good test cases!).
+    It is important to remember that even if you didn't copy but just gave
+    another student your solution, you are still violating the honor code, so please be careful.
+    We periodically run similarity-detection software over all
+    submitted student programs, including programs from past quarters and any
+    solutions found online on public websites.
+    Anyone violating the <a href="http://studentaffairs.stanford.edu/communitystandards/policy/honor-code">honor
+      code</a> will be referred to the Office of Judicial Affairs.
+    If you feel like you made a mistake (it can happen, especially under time
+    pressure!), please reach out to Percy or the head CA;
+    the consequences will be much less severe than if we approach you.
+  </div>
+
+  <p class="subheader">Submission</p>
+
+  <div class="section"><b>Electronic Submission:</b>
+    All assignments (homework problems and project milestones) must be submitted using the submit script by
+    <b><font color="red">11pm</font> (23:00, not 23:59)</b>.
+    Please note that the submission script <strong>only works on <a href="https://web.stanford.edu/group/farmshare/cgi-bin/wiki/index.php/Main_Page#corn_info">corn</a></strong> so please don't submit on <a href="http://www-cs.stanford.edu/computing-guide/overview/computer-systems/myth">myth</a>.
+    <p>To submit:</p>
+    <ol>
+      <li><p>Copy your submission files
+        (usually <code>writeup.pdf</code> and <code>submission.py</code>)
+        to <code>corn.stanford.edu</code>. You can use a graphical interface
+        (<a href="https://itservices.stanford.edu/service/ess/pc/securefx">SecureFX</a>,
+         <a href="https://filezilla-project.org/">FileZilla</a>,
+         <a href="http://rsug.itd.umich.edu/software/fugu/">Fugu</a>) or the following command:
+        </p><pre>scp <span class="placeholder">&lt;your submission file(s)&gt;</span> <span class="placeholder">&lt;your SUNetID&gt;</span>@corn.stanford.edu:</pre>
+      </li>
+      <li><p>Login to <code>corn.stanford.edu</code>:
+        </p><pre>ssh <span class="placeholder">&lt;your SUNetID&gt;</span>@corn.stanford.edu</pre>
+        For Windows, you can use
+        <a href="https://itservices.stanford.edu/service/ess/pc/securecrt">SecureCRT</a>,
+        <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/">PuTTY</a>, or
+        <a href="https://www.cygwin.com/">Cygwin</a>.
+        Make sure you use the <b>binary transfer mode</b>, as the ASCII transfer mode will damage PDF files!
+      </li>
+      <li><p>Make sure the code runs correctly on corn. (Otherwise, the code will not be graded.)</p></li>
+      <li><p>Type:
+        </p><pre>/usr/bin/python /usr/class/cs221/WWW/submit.py <span class="placeholder">&lt;assignment ID&gt;</span> <span class="placeholder">&lt;directory with your submission files&gt;</span></pre>
+        For example, if the assignment ID is <code>foundations</code>
+        and you are in the same directory as your submission files, type:
+        <pre>/usr/bin/python /usr/class/cs221/WWW/submit.py foundations ./</pre>
+      </li>
+    </ol>
+    <p>
+    You are allowed to submit an assignment a maximum of <b>ten (10)</b> times.
+    Each submission will replace the previous.
+    </p><p>
+    Since we do not accept the assignments from other submission methods (e.g., email),
+    please make sure you can use the submit script. Do not wait until the deadline.
+    If anything goes wrong, please ask a question on Piazza or contact a course assistant.
+    Do not email us your submission.
+    <b>Partial work is better than not submitting any work.</b>
+    </p><p>
+    You will receive an email confirmation about your submission.  For
+    assignments with a programming component, we will automatically
+    sanity check your code in some basic test cases, but we will grade
+    your code on additional test cases.
+    <b>Important</b>: just because you pass the basic test cases, you are by no
+    means guaranteed to get full credit on the other test cases, so you should
+    test the program more thoroughly yourself!
+    </p><p>
+    Unless the assignment instructs otherwise, all of your code modifications
+    should be in <code>submission.py</code> and all of your written answers
+    in <code>writeup.pdf</code>.
+    </p><p>
+    For the project milestones, make sure the <b>same one member</b> of your
+    group submits on behalf of the entire group.  The submission should include a
+    <code>group.txt</code> file which should contain the <b>SUNetIDs</b> of the entire
+    group, one per line. Do not include your names!
+  </p></div>
+
+  <div class="section"><b>Late days:</b>
+    An assignment is <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-1-Frame"><nobr><span class="math" id="MathJax-Span-1" role="math" style="width: 0.82em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.627em; height: 0px; font-size: 130%;"><span style="position: absolute; clip: rect(1.925em 1000em 2.647em -999.998em); top: -2.498em; left: 0.002em;"><span class="mrow" id="MathJax-Span-2"><span class="mi" id="MathJax-Span-3" style="font-family: MathJax_Math; font-style: italic;">n</span></span><span style="display: inline-block; width: 0px; height: 2.502em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.691em; vertical-align: -0.059em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-1">n</script> days late if it was not turned in within
+    <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-2-Frame"><nobr><span class="math" id="MathJax-Span-4" role="math" style="width: 5.387em; display: inline-block;"><span style="display: inline-block; position: relative; width: 4.137em; height: 0px; font-size: 130%;"><span style="position: absolute; clip: rect(1.829em 1000em 3.127em -999.998em); top: -2.738em; left: 0.002em;"><span class="mrow" id="MathJax-Span-5"><span class="mn" id="MathJax-Span-6" style="font-family: MathJax_Main;">24</span><span class="mo" id="MathJax-Span-7" style="font-family: MathJax_Main;">(</span><span class="mi" id="MathJax-Span-8" style="font-family: MathJax_Math; font-style: italic;">n</span><span class="mo" id="MathJax-Span-9" style="font-family: MathJax_Main; padding-left: 0.243em;">−</span><span class="mn" id="MathJax-Span-10" style="font-family: MathJax_Main; padding-left: 0.243em;">1</span><span class="mo" id="MathJax-Span-11" style="font-family: MathJax_Main;">)</span></span><span style="display: inline-block; width: 0px; height: 2.743em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.441em; vertical-align: -0.372em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-2">24(n-1)</script> hours of the deadline.  You have <b>eight (8) late days</b>
+    in total that can be distributed among the assignments (except the
+    final project report) without penalty, with a maximum of <b>two (2) per assignment</b>.
+    The submit script will not accept any submission after the hard deadline,
+    which is <b>forty-eight (48) hours</b> after the deadline,
+    and you will receive a grade of zero.
+    <p>
+    If you use more than a total of eight (8) late days,
+    we will subtract <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-3-Frame"><nobr><span class="math" id="MathJax-Span-12" role="math" style="width: 4.185em; display: inline-block;"><span style="display: inline-block; position: relative; width: 3.224em; height: 0px; font-size: 130%;"><span style="position: absolute; clip: rect(1.829em 1000em 3.127em -999.998em); top: -2.738em; left: 0.002em;"><span class="mrow" id="MathJax-Span-13"><span class="mo" id="MathJax-Span-14" style="font-family: MathJax_Main;">(</span><span class="mn" id="MathJax-Span-15" style="font-family: MathJax_Main;">25</span><span class="mi" id="MathJax-Span-16" style="font-family: MathJax_Math; font-style: italic;">n</span><span class="mo" id="MathJax-Span-17" style="font-family: MathJax_Main;">)</span><span class="mi" id="MathJax-Span-18" style="font-family: MathJax_Main;">%</span></span><span style="display: inline-block; width: 0px; height: 2.743em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.441em; vertical-align: -0.372em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-3">(25 n)\%</script> from the assignment grade
+    where <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-4-Frame"><nobr><span class="math" id="MathJax-Span-19" role="math" style="width: 0.82em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.627em; height: 0px; font-size: 130%;"><span style="position: absolute; clip: rect(1.925em 1000em 2.647em -999.998em); top: -2.498em; left: 0.002em;"><span class="mrow" id="MathJax-Span-20"><span class="mi" id="MathJax-Span-21" style="font-family: MathJax_Math; font-style: italic;">n</span></span><span style="display: inline-block; width: 0px; height: 2.502em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.691em; vertical-align: -0.059em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-4">n</script> is the number of late days beyond the 8-day limit.
+    Late days are applied chronologically (you do not get to choose which assignments to apply your late days).
+    Note that you can still use only up to two (2) late days per assignment.
+  </p></div>
+
+  <div class="section"><b>Regrades</b>:
+    If you believe that the course staff made an objective error in grading,
+    then you may submit a regrade request.  To do this, you must <b>come in person</b>
+    to the owner CA in charge of the given homework or exam problem.
+    Any requests submitted over email or on Piazza will be ignored.
+    Remember that even if the grading seems harsh to you, the same rubric was
+    used for everyone for fairness, so this is not sufficient justification for
+    a regrade.  If the regrade request is valid, the CA will add your request
+    to the list, which will get processed.
+  </div>
+
+
+
+<div class="section">
+  <a name="schedule"><span class="header">Schedule</span></a>
+  <div id="schedule"><table><tr><td style="white-space: nowrap"><b>Day</b></td><td style="white-space: nowrap"><b>Topic</b></td><td style="white-space: nowrap"><b>Slides</b></td><td style="white-space: nowrap"><b>Events</b></td><td style="white-space: nowrap"><b>Deadlines</b></td></tr><tr><td style="white-space: nowrap"></td><td colspan="5"><hr></td></tr><tr><td style="white-space: nowrap"></td><td style="white-space: nowrap"><div class="scheduledTopic">[Introduction]</div><br><i>What can AI do for you?  What do you need for this class?</i></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Mon Sep 21<br><font color="green">(week 1)</font></td><td style="white-space: nowrap"><a href="lectures/index.html#include=overview.js" target="_blank">Overview of course<br>Optimization</a></td><td style="white-space: nowrap"><a class="pdfLink" href="lectures/index.html#include=overview.js&amp;mode=print1pp" target="_blank">[one page]</a><br><a class="pdfLink" href="lectures/index.html#include=overview.js&amp;mode=outline" target="_blank">[text outline]</a><br><span class="pdfLink">[pdf:<a href="lectures/overview.pdf" target="_blank">1pp</a>,<a href="lectures/overview-6pp.pdf" target="_blank">6pp</a>]</span></td><td style="white-space: nowrap">[<a href="assignments/foundations/index.html">foundations</a> (<a href="assignments/foundations.zip">zip</a>)] <b><font color="green">out</font></b></td></tr><tr><td style="white-space: nowrap"></td><td colspan="5"><hr></td></tr><tr><td style="white-space: nowrap"></td><td style="white-space: nowrap"><div class="scheduledTopic">[Machine learning]</div><br><i>Don't manually code it up, learn it from examples...</i></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Wed Sep 23</td><td style="white-space: nowrap"><a href="lectures/index.html#include=learning1.js" target="_blank">Linear classification<br>Loss minimization<br>Stochastic gradient descent</a></td><td style="white-space: nowrap"><a class="pdfLink" href="lectures/index.html#include=learning1.js&amp;mode=print1pp" target="_blank">[one page]</a><br><a class="pdfLink" href="lectures/index.html#include=learning1.js&amp;mode=outline" target="_blank">[text outline]</a><br><span class="pdfLink">[pdf:<a href="lectures/learning1.pdf" target="_blank">1pp</a>,<a href="lectures/learning1-6pp.pdf" target="_blank">6pp</a>]</span><br><a href="lectures/index.html#include=learning-demo.js" class="pdfLink" target="_blank">[demo]</a></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Fri Sep 25</td><td style="white-space: nowrap">Section: review of optimization, probability, Python</td><td style="white-space: nowrap"><span class="pdfLink">[pdf:<a href="lectures/section1.pdf" target="_blank">1pp</a>,<a href="lectures/section1-6pp.pdf" target="_blank">6pp</a>]</span><br><span class="pdflink">[<a href="lectures/section1-extra.pdf">extra material</a>]</span></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Mon Sep 28<br><font color="green">(week 2)</font></td><td style="white-space: nowrap"><a href="lectures/index.html#include=learning2.js" target="_blank">Features and non-linearity<br>Neural networks, nearest neighbors</a></td><td style="white-space: nowrap"><a class="pdfLink" href="lectures/index.html#include=learning2.js&amp;mode=print1pp" target="_blank">[one page]</a><br><a class="pdfLink" href="lectures/index.html#include=learning2.js&amp;mode=outline" target="_blank">[text outline]</a><br><span class="pdfLink">[pdf:<a href="lectures/learning2.pdf" target="_blank">1pp</a>,<a href="lectures/learning2-6pp.pdf" target="_blank">6pp</a>]</span></td><td style="white-space: nowrap">[<a href="assignments/sentiment/index.html">sentiment</a> (<a href="assignments/sentiment.zip">zip</a>)] <b><font color="green">out</font></b></td></tr><tr><td style="white-space: nowrap">Tue Sep 29</td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap">[<a href="assignments/foundations/index.html">foundations</a> (<a href="assignments/foundations.zip">zip</a>)] <b><font color="red">due</font></b></td></tr><tr><td style="white-space: nowrap">Wed Sep 30</td><td style="white-space: nowrap"><a href="lectures/index.html#include=learning3.js" target="_blank">Generalization<br>Unsupervised learning, K-means</a></td><td style="white-space: nowrap"><a class="pdfLink" href="lectures/index.html#include=learning3.js&amp;mode=print1pp" target="_blank">[one page]</a><br><a class="pdfLink" href="lectures/index.html#include=learning3.js&amp;mode=outline" target="_blank">[text outline]</a><br><span class="pdfLink">[pdf:<a href="lectures/learning3.pdf" target="_blank">1pp</a>,<a href="lectures/learning3-6pp.pdf" target="_blank">6pp</a>]</span></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Fri Oct 2</td><td style="white-space: nowrap">Section: learning and RNNs</td><td style="white-space: nowrap"><span class="pdflink">[<a href="lectures/section2.pdf">slides</a>]</span></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap"></td><td colspan="5"><hr></td></tr><tr><td style="white-space: nowrap"></td><td style="white-space: nowrap"><div class="scheduledTopic">[Search]</div><br><i>Problem solving as finding paths in graphs...</i></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Mon Oct 5<br><font color="green">(week 3)</font></td><td style="white-space: nowrap"><a href="lectures/index.html#include=search1.js" target="_blank">Tree search<br>Dynamic programming, uniform cost search</a></td><td style="white-space: nowrap"><a class="pdfLink" href="lectures/index.html#include=search1.js&amp;mode=print1pp" target="_blank">[one page]</a><br><a class="pdfLink" href="lectures/index.html#include=search1.js&amp;mode=outline" target="_blank">[text outline]</a><br><span class="pdfLink">[pdf:<a href="lectures/search1.pdf" target="_blank">1pp</a>,<a href="lectures/search1-6pp.pdf" target="_blank">6pp</a>]</span></td><td style="white-space: nowrap">[<a href="assignments/reconstruct/index.html">reconstruct</a> (<a href="assignments/reconstruct.zip">zip</a>)] <b><font color="green">out</font></b></td></tr><tr><td style="white-space: nowrap">Tue Oct 6</td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap">[<a href="assignments/sentiment/index.html">sentiment</a> (<a href="assignments/sentiment.zip">zip</a>)] <b><font color="red">due</font></b></td></tr><tr><td style="white-space: nowrap">Wed Oct 7</td><td style="white-space: nowrap"><a href="lectures/index.html#include=search2.js" target="_blank">A*, consistent heuristics<br>Relaxation</a></td><td style="white-space: nowrap"><a class="pdfLink" href="lectures/index.html#include=search2.js&amp;mode=print1pp" target="_blank">[one page]</a><br><a class="pdfLink" href="lectures/index.html#include=search2.js&amp;mode=outline" target="_blank">[text outline]</a><br><span class="pdfLink">[pdf:<a href="lectures/search2.pdf" target="_blank">1pp</a>,<a href="lectures/search2-6pp.pdf" target="_blank">6pp</a>]</span></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Fri Oct 9</td><td style="white-space: nowrap">Section: search</td><td style="white-space: nowrap"><span class="pdflink">[<a href="lectures/section3.pdf">slides</a>]</span></td><td style="white-space: nowrap">Drop date</td></tr><tr><td style="white-space: nowrap"></td><td colspan="5"><hr></td></tr><tr><td style="white-space: nowrap"></td><td style="white-space: nowrap"><div class="scheduledTopic">[Markov decision processes]</div><br><i>When nature intervenes randomly...</i></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Mon Oct 12<br><font color="green">(week 4)</font></td><td style="white-space: nowrap"><a href="lectures/index.html#include=mdp1.js" target="_blank">Policy evaluation, policy improvement<br>Policy iteration, value iteration</a></td><td style="white-space: nowrap"><a class="pdfLink" href="lectures/index.html#include=mdp1.js&amp;mode=print1pp" target="_blank">[one page]</a><br><a class="pdfLink" href="lectures/index.html#include=mdp1.js&amp;mode=outline" target="_blank">[text outline]</a><br><span class="pdfLink">[pdf:<a href="lectures/mdp1.pdf" target="_blank">1pp</a>,<a href="lectures/mdp1-6pp.pdf" target="_blank">6pp</a>]</span></td><td style="white-space: nowrap">[<a href="assignments/blackjack/index.html">blackjack</a> (<a href="assignments/blackjack.zip">zip</a>)] <b><font color="green">out</font></b><br><a href="project.html#p-proposal">p-proposal</a> <b><font color="green">out</font></b></td></tr><tr><td style="white-space: nowrap">Tue Oct 13</td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap">[<a href="assignments/reconstruct/index.html">reconstruct</a> (<a href="assignments/reconstruct.zip">zip</a>)] <b><font color="red">due</font></b></td></tr><tr><td style="white-space: nowrap">Wed Oct 14</td><td style="white-space: nowrap"><a href="lectures/index.html#include=mdp2.js" target="_blank">Reinforcement learning<br>Monte Carlo, SARSA, Q-learning<br>Exploration/exploitation, function approximation</a></td><td style="white-space: nowrap"><a class="pdfLink" href="lectures/index.html#include=mdp2.js&amp;mode=print1pp" target="_blank">[one page]</a><br><a class="pdfLink" href="lectures/index.html#include=mdp2.js&amp;mode=outline" target="_blank">[text outline]</a><br><span class="pdfLink">[pdf:<a href="lectures/mdp2.pdf" target="_blank">1pp</a>,<a href="lectures/mdp2-6pp.pdf" target="_blank">6pp</a>]</span></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Fri Oct 16</td><td style="white-space: nowrap">Section: MDPs, RL</td><td style="white-space: nowrap"><span class="pdflink">[<a href="lectures/section4.pdf">slides</a>]</span></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap"></td><td colspan="5"><hr></td></tr><tr><td style="white-space: nowrap"></td><td style="white-space: nowrap"><div class="scheduledTopic">[Game playing]</div><br><i>When an adversary intervenes...</i></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Mon Oct 19<br><font color="green">(week 5)</font></td><td style="white-space: nowrap"><a href="lectures/index.html#include=games1.js" target="_blank">Minimax, expectimax<br>Evaluation functions<br>Alpha-beta pruning</a></td><td style="white-space: nowrap"><a class="pdfLink" href="lectures/index.html#include=games1.js&amp;mode=print1pp" target="_blank">[one page]</a><br><a class="pdfLink" href="lectures/index.html#include=games1.js&amp;mode=outline" target="_blank">[text outline]</a><br><span class="pdfLink">[pdf:<a href="lectures/games1.pdf" target="_blank">1pp</a>,<a href="lectures/games1-6pp.pdf" target="_blank">6pp</a>]</span></td><td style="white-space: nowrap">[<a href="assignments/pacman/index.html">pacman</a> (<a href="assignments/pacman.zip">zip</a>)] <b><font color="green">out</font></b></td></tr><tr><td style="white-space: nowrap">Tue Oct 20</td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap">[<a href="assignments/blackjack/index.html">blackjack</a> (<a href="assignments/blackjack.zip">zip</a>)] <b><font color="red">due</font></b><br><a href="project.html#p-proposal">p-proposal</a> <b><font color="red">due</font></b></td></tr><tr><td style="white-space: nowrap">Wed Oct 21</td><td style="white-space: nowrap"><a href="lectures/index.html#include=games2.js" target="_blank">TD learning<br>Game theory</a></td><td style="white-space: nowrap"><a class="pdfLink" href="lectures/index.html#include=games2.js&amp;mode=print1pp" target="_blank">[one page]</a><br><a class="pdfLink" href="lectures/index.html#include=games2.js&amp;mode=outline" target="_blank">[text outline]</a><br><span class="pdfLink">[pdf:<a href="lectures/games2.pdf" target="_blank">1pp</a>,<a href="lectures/games2-6pp.pdf" target="_blank">6pp</a>]</span></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Fri Oct 23</td><td style="white-space: nowrap">Section: games</td><td style="white-space: nowrap"><span class="pdflink">[<a href="lectures/section5.pdf">slides</a>]</span></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap"></td><td colspan="5"><hr></td></tr><tr><td style="white-space: nowrap"></td><td style="white-space: nowrap"><div class="scheduledTopic">[Constraint satisfaction problems]</div><br><i>Problem solving as assigning variables (with constraints)...</i></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Mon Oct 26<br><font color="green">(week 6)</font></td><td style="white-space: nowrap"><a href="lectures/index.html#include=csp1.js" target="_blank">Factor graphs<br>Backtracking search<br>Dynamic ordering, arc consistency</a></td><td style="white-space: nowrap"><a class="pdfLink" href="lectures/index.html#include=csp1.js&amp;mode=print1pp" target="_blank">[one page]</a><br><a class="pdfLink" href="lectures/index.html#include=csp1.js&amp;mode=outline" target="_blank">[text outline]</a><br><span class="pdfLink">[pdf:<a href="lectures/csp1.pdf" target="_blank">1pp</a>,<a href="lectures/csp1-6pp.pdf" target="_blank">6pp</a>]</span><br><a href="lectures/index.html#include=inference-demo.js" class="pdfLink" target="_blank">[demo]</a></td><td style="white-space: nowrap">[<a href="assignments/scheduling/index.html">scheduling</a> (<a href="assignments/scheduling.zip">zip</a>)] <b><font color="green">out</font></b></td></tr><tr><td style="white-space: nowrap">Tue Oct 27</td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap">[<a href="assignments/pacman/index.html">pacman</a> (<a href="assignments/pacman.zip">zip</a>)] <b><font color="red">due</font></b></td></tr><tr><td style="white-space: nowrap">Wed Oct 28</td><td style="white-space: nowrap"><a href="lectures/index.html#include=csp2.js" target="_blank">Beam search, local search<br>Conditional independence, variable elimination</a></td><td style="white-space: nowrap"><a class="pdfLink" href="lectures/index.html#include=csp2.js&amp;mode=print1pp" target="_blank">[one page]</a><br><a class="pdfLink" href="lectures/index.html#include=csp2.js&amp;mode=outline" target="_blank">[text outline]</a><br><span class="pdfLink">[pdf:<a href="lectures/csp2.pdf" target="_blank">1pp</a>,<a href="lectures/csp2-6pp.pdf" target="_blank">6pp</a>]</span></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Fri Oct 30</td><td style="white-space: nowrap">Section: CSPs</td><td style="white-space: nowrap"><span class="pdflink">[<a href="lectures/section6.pdf">slides</a>]</span></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap"></td><td colspan="5"><hr></td></tr><tr><td style="white-space: nowrap"></td><td style="white-space: nowrap"><div class="scheduledTopic">[Bayesian networks]</div><br><i>Representing uncertainty with probabilities...</i></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Mon Nov 2<br><font color="green">(week 7)</font></td><td style="white-space: nowrap"><a href="lectures/index.html#include=bayes1.js" target="_blank">Bayesian inference<br>Marginal independence<br>Hidden Markov models</a></td><td style="white-space: nowrap"><a class="pdfLink" href="lectures/index.html#include=bayes1.js&amp;mode=print1pp" target="_blank">[one page]</a><br><a class="pdfLink" href="lectures/index.html#include=bayes1.js&amp;mode=outline" target="_blank">[text outline]</a><br><span class="pdfLink">[pdf:<a href="lectures/bayes1.pdf" target="_blank">1pp</a>,<a href="lectures/bayes1-6pp.pdf" target="_blank">6pp</a>]</span></td><td style="white-space: nowrap">[<a href="assignments/car/index.html">car</a> (<a href="assignments/car.zip">zip</a>)] <b><font color="green">out</font></b></td></tr><tr><td style="white-space: nowrap">Tue Nov 3</td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap">[<a href="assignments/scheduling/index.html">scheduling</a> (<a href="assignments/scheduling.zip">zip</a>)] <b><font color="red">due</font></b></td></tr><tr><td style="white-space: nowrap">Wed Nov 4</td><td style="white-space: nowrap"><a href="lectures/index.html#include=bayes2.js" target="_blank">Forward-backward<br>Gibbs sampling<br>Particle filtering</a></td><td style="white-space: nowrap"><a class="pdfLink" href="lectures/index.html#include=bayes2.js&amp;mode=print1pp" target="_blank">[one page]</a><br><a class="pdfLink" href="lectures/index.html#include=bayes2.js&amp;mode=outline" target="_blank">[text outline]</a><br><span class="pdfLink">[pdf:<a href="lectures/bayes2.pdf" target="_blank">1pp</a>,<a href="lectures/bayes2-6pp.pdf" target="_blank">6pp</a>]</span></td><td style="white-space: nowrap"><a href="project.html#p-progress">p-progress</a> <b><font color="green">out</font></b></td></tr><tr><td style="white-space: nowrap">Fri Nov 6</td><td style="white-space: nowrap">Section: Bayesian networks</td><td style="white-space: nowrap"><span class="pdflink">[<a href="lectures/section7.pdf">slides</a>]</span></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Mon Nov 9<br><font color="green">(week 8)</font></td><td style="white-space: nowrap"><a href="lectures/index.html#include=bayes3.js" target="_blank">Learning Bayesian networks<br>Laplace smoothing<br>Expectation Maximization</a></td><td style="white-space: nowrap"><a class="pdfLink" href="lectures/index.html#include=bayes3.js&amp;mode=print1pp" target="_blank">[one page]</a><br><a class="pdfLink" href="lectures/index.html#include=bayes3.js&amp;mode=outline" target="_blank">[text outline]</a><br><span class="pdfLink">[pdf:<a href="lectures/bayes3.pdf" target="_blank">1pp</a>,<a href="lectures/bayes3-6pp.pdf" target="_blank">6pp</a>]</span></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap"></td><td colspan="5"><hr></td></tr><tr><td style="white-space: nowrap"></td><td style="white-space: nowrap"><div class="scheduledTopic">[Logic]</div><br><i>More expressive models...</i></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Tue Nov 10</td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap">[<a href="assignments/car/index.html">car</a> (<a href="assignments/car.zip">zip</a>)] <b><font color="red">due</font></b></td></tr><tr><td style="white-space: nowrap">Wed Nov 11</td><td style="white-space: nowrap"><a href="lectures/index.html#include=logic1.js" target="_blank">Syntax versus semantics<br>Propositional logic<br>Horn clauses</a></td><td style="white-space: nowrap"><a class="pdfLink" href="lectures/index.html#include=logic1.js&amp;mode=print1pp" target="_blank">[one page]</a><br><a class="pdfLink" href="lectures/index.html#include=logic1.js&amp;mode=outline" target="_blank">[text outline]</a><br><span class="pdfLink">[pdf:<a href="lectures/logic1.pdf" target="_blank">1pp</a>,<a href="lectures/logic1-6pp.pdf" target="_blank">6pp</a>]</span></td><td style="white-space: nowrap">[<a href="assignments/logic/index.html">logic</a> (<a href="assignments/logic.zip">zip</a>)] <b><font color="green">out</font></b></td></tr><tr><td style="white-space: nowrap">Thu Nov 12</td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"><a href="project.html#p-progress">p-progress</a> <b><font color="red">due</font></b></td></tr><tr><td style="white-space: nowrap">Fri Nov 13</td><td style="white-space: nowrap">Section: practice exam problems</td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Mon Nov 16<br><font color="green">(week 9)</font></td><td style="white-space: nowrap"><a href="lectures/index.html#include=logic2.js" target="_blank">First-order logic<br>Resolution</a></td><td style="white-space: nowrap"><a class="pdfLink" href="lectures/index.html#include=logic2.js&amp;mode=print1pp" target="_blank">[one page]</a><br><a class="pdfLink" href="lectures/index.html#include=logic2.js&amp;mode=outline" target="_blank">[text outline]</a><br><span class="pdfLink">[pdf:<a href="lectures/logic2.pdf" target="_blank">1pp</a>,<a href="lectures/logic2-6pp.pdf" target="_blank">6pp</a>]</span></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Tue Nov 17</td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"><b><font color="brown">Exam</font></b></td></tr><tr><td style="white-space: nowrap">Wed Nov 18</td><td style="white-space: nowrap"><a href="lectures/index.html#include=logic3.js" target="_blank">Higher-order logics<br>Markov logic<br>Semantic parsing</a></td><td style="white-space: nowrap"><a class="pdfLink" href="lectures/index.html#include=logic3.js&amp;mode=print1pp" target="_blank">[one page]</a><br><a class="pdfLink" href="lectures/index.html#include=logic3.js&amp;mode=outline" target="_blank">[text outline]</a><br><span class="pdfLink">[pdf:<a href="lectures/logic3.pdf" target="_blank">1pp</a>,<a href="lectures/logic3-6pp.pdf" target="_blank">6pp</a>]</span></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Fri Nov 20</td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap">[<a href="assignments/logic/index.html">logic</a> (<a href="assignments/logic.zip">zip</a>)] <b><font color="red">due</font></b></td></tr><tr><td style="white-space: nowrap">Mon Nov 23<br><font color="green">(week 10)</font></td><td style="white-space: nowrap">(Thanksgiving — no class)</td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Wed Nov 25</td><td style="white-space: nowrap">(Thanksgiving — no class)</td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap"></td><td colspan="5"><hr></td></tr><tr><td style="white-space: nowrap"></td><td style="white-space: nowrap"><div class="scheduledTopic">[Conclusion]</div><br><i>Reflections and prospects...</i></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Mon Nov 30<br><font color="green">(week 11)</font></td><td style="white-space: nowrap"><a href="lectures/index.html#include=deep.js" target="_blank">Deep learning<br>autoencoders, CNNs, RNNs</a></td><td style="white-space: nowrap"><a class="pdfLink" href="lectures/index.html#include=deep.js&amp;mode=print1pp" target="_blank">[one page]</a><br><a class="pdfLink" href="lectures/index.html#include=deep.js&amp;mode=outline" target="_blank">[text outline]</a><br><span class="pdfLink">[pdf:<a href="lectures/deep.pdf" target="_blank">1pp</a>,<a href="lectures/deep-6pp.pdf" target="_blank">6pp</a>]</span></td><td style="white-space: nowrap"><a href="project.html#p-final">p-final</a> <b><font color="green">out</font></b></td></tr><tr><td style="white-space: nowrap">Wed Dec 2</td><td style="white-space: nowrap"><a href="lectures/index.html#include=conclusion.js" target="_blank">Summary, future of AI</a></td><td style="white-space: nowrap"><a class="pdfLink" href="lectures/index.html#include=conclusion.js&amp;mode=print1pp" target="_blank">[one page]</a><br><a class="pdfLink" href="lectures/index.html#include=conclusion.js&amp;mode=outline" target="_blank">[text outline]</a><br><span class="pdfLink">[pdf:<a href="lectures/conclusion.pdf" target="_blank">1pp</a>,<a href="lectures/conclusion-6pp.pdf" target="_blank">6pp</a>]</span></td><td style="white-space: nowrap"></td></tr><tr><td style="white-space: nowrap">Fri Dec 11</td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"></td><td style="white-space: nowrap"><a href="project.html#p-final">p-final</a> <b><font color="red">due</font></b></td></tr></table></div>
+</div>
+
+
+</li><div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-family: MathJax_Size4, sans-serif;"></div></div></body></html>
